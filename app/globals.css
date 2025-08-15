@@ -1,27 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant light (&:is(.light *)) {
-	--impact-1: #113021;
-	--impact-2: #43703a;
-	--impact-3: #f8bf49;
-	--impact-4: #dd5c35;
-	--base-1: #ffffff;
-	--base-2: #fff8f1;
-	--base-3: #f8f2eb;
-	--base-4: #eed7df;
-}
-
-@custom-variant dark (&:is(.dark *)) {
-	--impact-1: #86c4a0;
-	--impact-2: #e8eba4;
-	--impact-3: #f8f1a1;
-	--impact-4: #f3be7d;
-	--base-1: #3b3d4a;
-	--base-2: #363b37;
-	--base-3: #212c27;
-	--base-4: #1e2723;
-}
 
 @theme inline {
 	--color-background: var(--background);
@@ -96,6 +75,14 @@
 	--sidebar-accent-foreground: oklch(0.205 0 0);
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
+	--impact-1: #113021;
+	--impact-2: #43703a;
+	--impact-3: #f8bf49;
+	--impact-4: #dd5c35;
+	--base-1: #ffffff;
+	--base-2: #fff8f1;
+	--base-3: #f8f2eb;
+	--base-4: #eed7df;
 }
 
 .dark {
@@ -130,6 +117,14 @@
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.556 0 0);
+	--impact-1: #86c4a0;
+	--impact-2: #e8eba4;
+	--impact-3: #f8f1a1;
+	--impact-4: #f3be7d;
+	--base-1: #3b3d4a;
+	--base-2: #363b37;
+	--base-3: #212c27;
+	--base-4: #1e2723;
 }
 
 @layer base {
