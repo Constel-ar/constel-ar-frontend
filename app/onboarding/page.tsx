@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import type { UserRole, Category } from "@/lib/types";
 import { CATEGORIES } from "@/lib/types";
+import Image from "next/image";
 
 const categoryIcons = {
   Educación: GraduationCap,
@@ -152,10 +153,12 @@ export default function OnboardingPage() {
         formData.contactPersonEmail));
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex justify-center p-4">
       <div className="w-full max-w-4xl">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">Bienvenido a CrowdHeart</h1>
+        <div className="text-center my-8">
+          <div className="flex items-center justify-center mb-2">
+            <Image src="/logo.png" alt="Logo" width={70} height={32} />
+          </div>
           <p className="text-muted-foreground">
             Completa tu perfil para comenzar
           </p>

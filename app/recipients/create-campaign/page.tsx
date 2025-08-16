@@ -1,12 +1,12 @@
 import { AppHeader } from "@/components/app-header";
-import { RecipientsClientPage } from "./page.client";
+import { CreateCampaignPageClient } from "./page.client";
 
 export default function RecipientsDashboard() {
   return (
-    <div>
+    <div className="w-full">
       <AppHeader />
-      <div className="p-8 pt-0">
-        <RecipientsClientPage />
+      <div className="w-full p-8 pt-0">
+        <CreateCampaignPageClient />
       </div>
     </div>
   );
