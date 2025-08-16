@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { CampaignMilestones } from "./components/campaign-milestones";
 import Link from "next/link";
+import { useFormattedNumber } from "@/lib/hooks";
 
 export function RecipientsClientPage() {
   const hasActiveCampaign = true; // This would come from your data source
@@ -78,6 +79,10 @@ export function RecipientsClientPage() {
     campaign?.milestones.filter((m) => m.status === "completed").length || 0;
   const totalMilestones = campaign?.milestones.length || 0;
 
+  // Usar el hook para formatear números
+  const formattedRaised = useFormattedNumber(campaign.raised);
+  const formattedGoal = useFormattedNumber(campaign.goal);
+
   return (
     <div className="w-full">
       <div className="space-y-6">
@@ -128,10 +133,10 @@ export function RecipientsClientPage() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
-                  ${campaign.raised.toLocaleString()}
+                  ${formattedRaised}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  de ${campaign.goal.toLocaleString()} objetivo
+                  de ${formattedGoal} objetivo
                 </p>
                 <Progress
                   value={(campaign.raised / campaign.goal) * 100}

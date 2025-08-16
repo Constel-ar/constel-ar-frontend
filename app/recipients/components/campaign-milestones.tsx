@@ -30,6 +30,7 @@ import {
   FileText,
 } from "lucide-react";
 import { useState } from "react";
+import { useFormattedNumber } from "@/lib/hooks";
 
 interface Milestone {
   id: string;
@@ -62,6 +63,10 @@ interface CampaignMilestonesProps {
 export function CampaignMilestones({ campaign }: CampaignMilestonesProps) {
   const [evidenceText, setEvidenceText] = useState("");
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+
+  // Usar el hook para formatear números
+  const formattedRaised = useFormattedNumber(campaign.raised);
+  const formattedGoal = useFormattedNumber(campaign.goal);
 
   const handleSubmitEvidence = (milestoneId: string) => {
     // Mock evidence submission
@@ -129,8 +134,7 @@ export function CampaignMilestones({ campaign }: CampaignMilestonesProps) {
               </Badge>
             </CardTitle>
             <CardDescription>
-              ${campaign.raised.toLocaleString()} de $
-              {campaign.goal.toLocaleString()} • {campaign.donors} donantes
+              ${formattedRaised} de ${formattedGoal} • {campaign.donors} donantes
             </CardDescription>
           </div>
         </div>
@@ -234,7 +238,7 @@ export function CampaignMilestones({ campaign }: CampaignMilestonesProps) {
                   <div className="flex items-center gap-4 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <DollarSign className="h-3 w-3" />$
-                      {milestone.targetAmount.toLocaleString()}
+                      {useFormattedNumber(milestone.targetAmount)}
                     </span>
                     <span className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />

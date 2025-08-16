@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/components/app-recipients-sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AuthProvider } from "@/lib/auth-context";
 

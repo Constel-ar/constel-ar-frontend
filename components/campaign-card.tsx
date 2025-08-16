@@ -2,6 +2,7 @@ import { Campaign } from "../types/campaign";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
 import { Badge } from "./ui/badge";
+import { useFormattedNumber } from "@/lib/hooks";
 
 interface CampaignCardProps {
   campaign: Campaign;
@@ -9,6 +10,8 @@ interface CampaignCardProps {
 
 export function CampaignCard({ campaign }: CampaignCardProps) {
   const progress = (campaign.amount_donated / campaign.total_goal) * 100;
+  const formattedDonated = useFormattedNumber(campaign.amount_donated);
+  const formattedGoal = useFormattedNumber(campaign.total_goal);
 
   return (
     <Card>
@@ -20,8 +23,8 @@ export function CampaignCard({ campaign }: CampaignCardProps) {
         <div className="mt-4">
           <Progress value={progress} />
           <div className="mt-2 flex justify-between">
-            <span>${campaign.amount_donated.toLocaleString()}</span>
-            <span>${campaign.total_goal.toLocaleString()}</span>
+            <span>${formattedDonated}</span>
+            <span>${formattedGoal}</span>
           </div>
         </div>
       </CardContent>

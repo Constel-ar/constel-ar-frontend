@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Trash2, GripVertical, Target } from "lucide-react";
+import { useFormattedNumber } from "@/lib/hooks";
 
 interface Milestone {
   id: string;
@@ -64,6 +65,10 @@ export function MilestoneBuilder({
   );
   const isAmountValid = totalMilestoneAmount <= totalGoal;
 
+  // Usar el hook para formatear números
+  const formattedTotalMilestoneAmount = useFormattedNumber(totalMilestoneAmount);
+  const formattedTotalGoal = useFormattedNumber(totalGoal);
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -117,7 +122,7 @@ export function MilestoneBuilder({
                         {milestone.title || `Milestone ${index + 1}`}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        ${milestone.targetAmount.toLocaleString()}
+                        ${useFormattedNumber(milestone.targetAmount)}
                       </p>
                     </div>
                   </div>
@@ -132,10 +137,10 @@ export function MilestoneBuilder({
       <div className="flex items-center justify-between p-4 rounded-lg border">
         <div>
           <p className="font-medium">
-            Total de Milestones: ${totalMilestoneAmount.toLocaleString()}
+            Total de Milestones: ${formattedTotalMilestoneAmount}
           </p>
           <p className="text-sm text-muted-foreground">
-            Objetivo de la campaña: ${totalGoal.toLocaleString()}
+            Objetivo de la campaña: ${formattedTotalGoal}
           </p>
         </div>
         <Badge variant={isAmountValid ? "default" : "destructive"}>
