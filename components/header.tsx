@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Menu, ArrowRight } from "lucide-react"
 import { useState } from "react"
+import Link from "next/link"
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -33,9 +34,11 @@ export function Header() {
         </div>
 
         <div className="flex items-center space-x-2">
-          <Button variant="ghost" className="rounded-full border border-[color:var(--impact-1)] text-[color:var(--impact-1)] bg-[color:var(--base-1)] hover:bg-[color:var(--base-3)] font-semibold px-4">
-            Log-In
-            <ArrowRight className="h-4 w-4 ml-2" />
+          <Button asChild variant="ghost" className="rounded-full border border-[color:var(--impact-1)] text-[color:var(--impact-1)] bg-[color:var(--base-1)] hover:bg-[color:var(--base-3)] font-semibold px-4">
+            <Link href="/login">
+              Log-In
+              <ArrowRight className="h-4 w-4 ml-2" />
+            </Link>
           </Button>
 
           <Button
