@@ -1,3 +1,5 @@
+'use client'
+
 import { Campaign } from "../types/campaign";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
