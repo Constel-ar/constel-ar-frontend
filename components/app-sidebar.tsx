@@ -1,85 +1,185 @@
-import * as React from "react";
+"use client"
 
+import * as React from "react"
+import {
+  IconCamera,
+  IconChartBar,
+  IconDashboard,
+  IconDatabase,
+  IconFileAi,
+  IconFileDescription,
+  IconFileWord,
+  IconFolder,
+  IconHelp,
+  IconInnerShadowTop,
+  IconListDetails,
+  IconReport,
+  IconSearch,
+  IconSettings,
+  IconUsers,
+} from "@tabler/icons-react"
+
+import { NavDocuments } from "@/components/nav-documents"
+import { NavMain } from "@/components/nav-main"
+import { NavSecondary } from "@/components/nav-secondary"
+import { NavUser } from "@/components/nav-user"
+import { ModeToggle } from "@/components/theme-toggle/ToggleButton"
 import {
   Sidebar,
   SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
+  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
-} from "@/components/ui/sidebar";
-import Image from "next/image";
-import { LayoutDashboard, Plus, User } from "lucide-react";
-import Link from "next/link";
+} from "@/components/ui/sidebar"
 
-// This is sample data.
 const data = {
-  versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
   navMain: [
     {
-      title: "Navegación",
+      title: "Dashboard",
+      url: "#",
+      icon: IconDashboard,
+    },
+    {
+      title: "Lifecycle",
+      url: "#",
+      icon: IconListDetails,
+    },
+    {
+      title: "Analytics",
+      url: "#",
+      icon: IconChartBar,
+    },
+    {
+      title: "Projects",
+      url: "#",
+      icon: IconFolder,
+    },
+    {
+      title: "Team",
+      url: "#",
+      icon: IconUsers,
+    },
+  ],
+  navClouds: [
+    {
+      title: "Capture",
+      icon: IconCamera,
+      isActive: true,
       url: "#",
       items: [
         {
-          title: "Dashboard",
-          icon: LayoutDashboard,
-          url: "/recipients",
-          isActive: true,
+          title: "Active Proposals",
+          url: "#",
         },
         {
-          title: "Mi Perfil",
-          icon: User,
-          url: "/recipients/profile",
-          isActive: false,
+          title: "Archived",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Proposal",
+      icon: IconFileDescription,
+      url: "#",
+      items: [
+        {
+          title: "Active Proposals",
+          url: "#",
         },
         {
-          title: "Crear Campaña",
-          icon: Plus,
-          url: "/recipients/create-campaign",
-          isActive: false,
+          title: "Archived",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Prompts",
+      icon: IconFileAi,
+      url: "#",
+      items: [
+        {
+          title: "Active Proposals",
+          url: "#",
+        },
+        {
+          title: "Archived",
+          url: "#",
         },
       ],
     },
   ],
-};
+  navSecondary: [
+    {
+      title: "Settings",
+      url: "#",
+      icon: IconSettings,
+    },
+    {
+      title: "Get Help",
+      url: "#",
+      icon: IconHelp,
+    },
+    {
+      title: "Search",
+      url: "#",
+      icon: IconSearch,
+    },
+  ],
+  documents: [
+    {
+      name: "Data Library",
+      url: "#",
+      icon: IconDatabase,
+    },
+    {
+      name: "Reports",
+      url: "#",
+      icon: IconReport,
+    },
+    {
+      name: "Word Assistant",
+      url: "#",
+      icon: IconFileWord,
+    },
+  ],
+}
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar {...props}>
+    <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
-        <div className="ml-1">
-          <Image src="/logo.png" alt="Logo" width={70} height={32} />
-        </div>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              className="data-[slot=sidebar-menu-button]:!p-1.5"
+            >
+              <a href="#">
+                <IconInnerShadowTop className="!size-5" />
+                <span className="text-base font-semibold">Acme Inc.</span>
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        {/* We create a SidebarGroup for each parent. */}
-        {data.navMain.map((item) => (
-          <SidebarGroup key={item.title}>
-            <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {item.items.map((item) => (
-                  <Link key={item.title} href={item.url}>
-                    <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton asChild isActive={item.isActive}>
-                        <div>
-                          <item.icon />
-                          <span>{item.title}</span>
-                        </div>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  </Link>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        ))}
+        <NavMain items={data.navMain} />
+        <NavDocuments items={data.documents} />
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarRail />
+      <SidebarFooter>
+        <div className="flex items-center gap-2">
+          <NavUser user={data.user} />
+          <ModeToggle />
+        </div>
+      </SidebarFooter>
     </Sidebar>
-  );
+  )
 }
